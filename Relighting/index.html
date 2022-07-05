@@ -33,8 +33,8 @@
                     <i class="fa fa-file"></i> Paper</a> </p>
               </div>
               <div class="column">
-                  <p class="mb-5"><a class="btn btn-large btn-light" href="https://github.com/MrTornado24/FENeRF" role="button"  target="_blank">
-                    <i class="fa fa-github-alt"></i> Code</a> </p>
+                  <p class="mb-5"><a class="btn btn-large btn-light" href="" role="button"  target="_blank">
+                    <i class="fa fa-github-alt"></i> Code[coming soon]</a> </p>
               </div>
               <div class="column">
                   <p class="mb-5"><a class="btn btn-large btn-light" href="supp.pdf" role="button"  target="_blank">
@@ -59,11 +59,11 @@
                   <source src="images/video-teaser_c.mp4" type="video/mp4">
             </video> -->
             <div class="text-center" style="margin-top: 60px; margin-bottom: 20px;">
-              <img src="images/teaser_v11.png" width=60% class="img-fluid" alt="Responsive image">
+              <img src="images/teaser_new.jpg" width=60% class="img-fluid" alt="Responsive image">
             </div>
               <!-- <br><br> -->
           <p class="text-justify">  </p>
-          <p class="text-justify"> Previous portrait image generation methods roughly fall into two categories: 2D GANs and 3D-aware GANs. 2D GANs can generate high fidelity portraits but with low view consistency. 3D-aware GAN methods can maintain view consistency but their generated images are not locally editable. To overcome these limitations, we propose FENeRF, a 3D-aware generator that can produce view-consistent and locally-editable portrait images. Our method uses two decoupled latent codes to generate corresponding facial semantics and texture in a spatial aligned 3D volume with shared geometry. Benefiting from such underlying 3D representation, FENeRF can jointly render the boundary-aligned image and semantic mask and use the semantic mask to edit the 3D volume via GAN inversion. We further show such 3D representation can be learned from widely available monocular image and semantic mask pairs. Moreover, we reveal that joint learning semantics and texture helps to generate finer geometry. Our experiments demonstrate that FENeRF outperforms state-of-the-art methods in various face editing tasks. </p>
+          <p class="text-justify"> Single-image human relighting aims to relight a target human under new lighting conditions by decomposing the input image into albedo, shape and lighting. Although plausible relighting results can be achieved, previous methods suffer from both the entanglement between albedo and lighting and the lack of hard shadows, which significantly decrease the reality. To tackle these two problems, we propose a geometry-aware single-image human relighting framework that leverages single-image geometry reconstruction for joint deployment of traditional graphics rendering and neural rendering techniques. For the de-lighting, we explore the shortcomings of UNet architecture and propose a modified HRNet, achieving better disentanglement between albedo and lighting. For the relighting, we introduce a ray tracing-based per-pixel lighting representation that explicitly models high-frequency shadows and propose a learning-based shading refinement module to restore realistic shadows (including hard cast shadows) from ray-traced shading maps. Our framework is able to generate photo-realistic high-frequency shadows such as cast shadows under challenging lighting conditions. Extensive experiments demonstrate that our proposed method outperforms previous methods on both synthetic and real images. </p>
         </div>
       </div>
     </div>
@@ -82,15 +82,15 @@
                   <source src="images/video-teaser_c.mp4" type="video/mp4">
             </video> -->
             <div class="text-center" style="margin-top: 60px; margin-bottom: 20px;">
-              <img src="images/method_v8.png" width=100% class="img-fluid" alt="Responsive image">
+              <img src="images/framework.jpg" width=100% class="img-fluid" alt="Responsive image">
             </div>
               <!-- <br><br> -->
           <p class="text-justify">  </p>
-          <p class="text-justify"> Figure 2. Overall pipeline of FENeRF. Our generator produces the spatially-aligned density, semantic and texture fields conditioned on
-disentangled latent codes Zs and Zt. The positional feature embedding ecorrd is also injected to the network together with view direction
-for color prediction to preserve high-frequency details in generated image. By sharing the same density, aligned rgb image and semantic
-map are rendered. Finally two discriminators Ds and Dc are fed with semantic map/image pairs and real/fake image pairs, and trained
-with adversarial objectives L<sub>D<sub>s</sub></sub> and L<sub>D<sub>c</sub></sub>, respectively.
+          <p class="text-justify"> Figure 2.Illustration of our framework architecture. 
+            There are two stages in our method: de-lighting and relighting. The de-lighting stage takes the input image and outputs estimated albedo (Section 4). 
+            For the relighting stage (Section 5), a full-body 3D model and a face 3D model are estimated by 3D Recon Module and then are sent to the renderer to render coarse shading maps (Section 5.1).
+            The Refine Module takes the coarse shading maps and the inferred ambient occlusion map as input and produces the final shading map (Section 5.2). 
+            Finally, the estimated albedo map and final shading map are dot product to produce the relit image.
  </p>
         </div>
       </div>
@@ -105,16 +105,16 @@ with adversarial objectives L<sub>D<sub>s</sub></sub> and L<sub>D<sub>c</sub></s
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-          <h3>Disentangled Interpolation and Style Mixing</h3>
+          <h3>De-lighting and Re-lighting</h3>
             <hr style="margin-top:0px">
             <div class="text-center" style="margin-top: 60px; margin-bottom: 20px;">
-              <img src="images/morphing.png" width=100% class="img-fluid" alt="Responsive image">
+              <img src="images/delight.jpg" width=100% class="img-fluid" alt="Responsive image">
             </div>
           <p class="text-justify">  </p>
 <!--           <p class="text-justify"> hhhhh </p> -->
           
           <div class="text-center" style="margin-top: 60px; margin-bottom: 20px;">
-              <img src="images/style_mixing_trans_v2.png" width=100% class="img-fluid" alt="Responsive image">
+              <img src="images/relight.jpg" width=100% class="img-fluid" alt="Responsive image">
             </div>
           <p class="text-justify">  </p>
 <!--           <p class="text-justify"> hhhhh </p> -->
@@ -126,25 +126,9 @@ with adversarial objectives L<sub>D<sub>s</sub></sub> and L<sub>D<sub>c</sub></s
   <br>
   
   <!-- Free-View Local Facial Editing -->
-  <section>
-    <div class="container">
-      <div class="row">
-        <div class="col-12 text-center">
-          <h3>Free-View Local Facial Editing</h3>
-            <hr style="margin-top:0px">
-            <div class="text-center" style="margin-top: 60px; margin-bottom: 20px;">
-              <img src="images/local_editing_v2.png" width=100% class="img-fluid" alt="Responsive image">
-            </div>
-          <p class="text-justify">  </p>
-<!--           <p class="text-justify"> hhhhh </p> -->
-         
-          
-        </div>
-      </div>
-    </div>
   </section>
   <br>
-  
+
     <section>
     <div class="container">
       <div class="row">
@@ -194,11 +178,11 @@ with adversarial objectives L<sub>D<sub>s</sub></sub> and L<sub>D<sub>c</sub></s
           <h3>Citation</h3>
           <hr style="margin-top:0px">
               <pre style="background-color: #e9eeef;padding: 1.25em 1.5em">
-<code>@article{sun2021fenerf,
-  title={FENeRF: Face Editing in Neural Radiance Fields},
-  author={Sun, Jingxiang and Wang, Xuan and Zhang, Yong and Li, Xiaoyu and Zhang, Qi and Liu, Yebin and Wang, Jue},
-  journal={arXiv preprint arXiv:2111.15490},
-  year={2021}
+<code>@article{ji2022,
+  title={Geometry-aware Single-image Full-body Human Relighting},
+  author={Ji, Chaonan and Yu, Tao and Guo, Kaiwen and Liu, Jingxin and Liu, Yebin},
+  <!-- journal={arXiv preprint arXiv:2111.15490}, -->
+  year={2022}
 }</code></pre>
           <hr>
       </div>
@@ -220,10 +204,6 @@ with adversarial objectives L<sub>D<sub>s</sub></sub> and L<sub>D<sub>c</sub></s
     </div>
   </div>
   <section>
-
-  <footer class="text-center" style="margin-bottom:10px">
-      Thanks to <a href="https://lioryariv.github.io/" target="_blank">Lior Yariv</a> for the website template.
-  </footer>
 
 </body>
 </html>
